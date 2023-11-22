@@ -17,6 +17,6 @@ router.route('/update-profile/:id')
 .patch(verifyToken,updateUser);
 
 router.route('/delete-profile/:id')
-.delete(verifyToken,deleteUser);
+.delete(deleteUser);
 
 module.exports = router;
