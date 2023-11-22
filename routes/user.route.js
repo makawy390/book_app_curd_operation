@@ -14,7 +14,7 @@ router.route('/login')
 .post(login);
 
 router.route('/update-profile/:id')
-.patch(updateUser);
+.patch(verifyToken,updateUser);
 
 router.route('/delete-profile/:id')
 .delete(verifyToken,deleteUser);
