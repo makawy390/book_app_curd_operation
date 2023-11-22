@@ -6,7 +6,7 @@ const verifyToken = require("../middleWare/verifyToken");
 const allowedTo = require("../middleWare/allowedTo");
 
 router.route('/add')
-.post(allowedTo('admin', 'manager'), addBook);
+.post(verifyToken,allowedTo('admin', 'manager'), addBook);
 
 router.route('/')
 .get(getAllBooks);
