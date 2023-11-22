@@ -18,7 +18,7 @@ const getAllUsers = asyncWrapper(
 /* ========== Create New User =========== */
 const register = asyncWrapper(
     async(req,res , next)=>{
-        const {username, email  , password  ,  role  } = req.body;
+        const {username, email , age , gender , password  ,  role  } = req.body;
         const oldEmail = await User.findOne({email: email});
         if (oldEmail) {
         const error = appError.create("البريد الالكتروني  موجود بالفعل" , 400 , httpStatus.FAIL );;
@@ -31,6 +31,8 @@ const register = asyncWrapper(
             email,
             password : hashingPassword,
             role,
+            age,
+            gender
         });
         const token = await generateJWT({email : newUser.email , id: newUser._id , role : newUser.role});
         newUser.token = token;
