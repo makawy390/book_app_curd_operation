@@ -6,7 +6,7 @@ const verifyToken = require("../middleWare/verifyToken");
 const allowedTo = require("../middleWare/allowedTo");
 
 router.route('/add')
-.post(verifyToken,allowedTo('admin', 'manager'), addBook);
+.post(allowedTo('admin', 'manager'), addBook);
 
 router.route('/')
 .get(getAllBooks);
@@ -15,7 +15,7 @@ router.route('/view/:id')
 .get(get_single_book); 
 
 router.route('/update/:id')
-.patch(verifyToken,allowedTo('admin', 'manager') , update_book);
+.patch(allowedTo('admin', 'manager') , update_book);
 
 router.route('/delete/:id')
 .delete(verifyToken, allowedTo('admin', 'manager') ,  delete_book);
