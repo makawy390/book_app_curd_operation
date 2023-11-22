@@ -2,7 +2,7 @@ const JWT = require('jsonwebtoken')
 const verifyToken = (req , res , next)=>{
  const auth_header = req.headers['Authorization'] || req.headers['authorization'];
  if (!auth_header) {
-  return res.json('token is require');
+  return res.status(404).json(status : "fail" , data :'token is require');
  }
  const token = auth_header.split(' ')[1];
 try {
