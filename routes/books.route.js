@@ -9,13 +9,13 @@ router.route('/add')
 .post(verifyToken,allowedTo('admin', 'manager'), addBook);
 
 router.route('/')
-.get(getAllBooks);
+.get(verifyToken,getAllBooks);
 
 router.route('/view/:id')
 .get(get_single_book); 
 
 router.route('/update/:id')
-.patch(allowedTo('admin', 'manager') , update_book);
+.patch(verifyToken,allowedTo('admin', 'manager') , update_book);
 
 router.route('/delete/:id')
 .delete(verifyToken, allowedTo('admin', 'manager') ,  delete_book);
