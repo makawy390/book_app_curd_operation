@@ -18,7 +18,7 @@ router.route('/update/:id')
 .patch(verifyToken,allowedTo('admin', 'manager') , update_book);
 
 router.route('/delete/:id')
-.delete(verifyToken, allowedTo('admin', 'manager') ,  delete_book);
+.delete(allowedTo('admin', 'manager') ,  delete_book);
 
 
 module.exports = router;
