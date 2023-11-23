@@ -68,7 +68,16 @@ const login = asyncWrapper(
 )
 const updateUser = asyncWrapper(
     async (req , res , next) =>{
-        const update = await User.updateOne({_id : req.params.id} , {$set:{...req.body}});
+        const {username, email , age , gender , password  ,  role  } = req.body;
+        const hashingPassword = await bcrypt.hash(password , 10);
+        const update = await User.updateOne({_id : req.params.id} , {$set:{
+            username,
+            email,
+            password : hashingPassword,
+            role,
+            age,
+            gender,
+        }});
         if (!update) {
             const error = appError.create(httpStatus.MESSAGE , 404 , FAIL );;
            return next(error);
