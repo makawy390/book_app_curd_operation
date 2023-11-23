@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const {getAllUsers , register , login , updateUser , deleteUser} = require('../controller/user.controller');
+const {getAllUsers , register , login , updateUser , deleteUser , profile} = require('../controller/user.controller');
 const verifyToken = require('../middleWare/verifyToken');
 
 router.route('/')
@@ -12,6 +12,9 @@ router.route('/register')
 
 router.route('/login')
 .post(login);
+
+router.route('/view/:id')
+.get(verifyToken,profile);
 
 router.route('/update-profile/:id')
 .patch(verifyToken,updateUser);
