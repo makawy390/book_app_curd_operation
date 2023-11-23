@@ -82,10 +82,23 @@ const deleteUser = asyncWrapper(
         return res.status(200).json({status : "success" , data : del , data_ar : "تم حذف الاكونت بنجاح"} );       
     }
 )
+// ========================================================
+const profile = asyncWrapper(
+    async (req , res , next)=>{
+        const id = req.params.id;
+        const get_user = await User.findById({_id : id});
+           if (!get_user) {
+            const error = appError.create(httpStatus.MESSAGE , 400 , httpStatus.FAIL );
+           return next(error);
+           }
+          return res.status(200).json({status:httpStatus.SUCCESS , data : get_user});
+    }
+)
 module.exports = {
     getAllUsers,
     register,
     login,
     updateUser,
-    deleteUser
+    deleteUser,
+    profile
 }
